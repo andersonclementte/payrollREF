@@ -1,0 +1,16 @@
+Para inserir, deletar, procurar ou editar um funcionario é necessario abrir a folha de pagamentos.
+
+Rodar a folha de pagamento paga todos os funcionarios no dia indicado e avança para o proximo dia.
+
+A data do sistema começa em 28/01/2021, uma quinta feira, anterior ao ultimo dia util do mês,
+o dia seguinte (29/01/2021) é uma sexta feira, ultimo dia util do mês, portanto pagará todos
+os tipos de funcionarios.
+
+Funcionarios horistas tem salarios fixados por hora, e precisam ter as horas lançadas no sistema
+para serem remunerados.
+
+Funcionários comissionados possuem salarios fixos e recebem um bonus de acordo com o resultado de vendas
+guardados no sistema.
+
+O ID de cada funcionario serve para todas as operações básicas, é gerada automaticamente 
+e difere do Id sindical.
