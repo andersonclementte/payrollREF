@@ -624,64 +624,69 @@ def calcPaymentValue(dictionary, unionDict, key):
     else:
         return result
 
+def weeklyPayment(dictionary, unionDic, schedule, day):
+    for key in schedule['weekly']:  #weekly payment
+                payment = calcPaymentValue(dictionary, unionDic, key)
+                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
+                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(deposit)
+                    print("Pagamento semanal efetuado")
+
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
+                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento semanal efetuado")
+
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
+                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento semanal efetuado")
+
+def biweeklyPayment(dictionary, unionDic, schedule, day):
+    for key in schedule['bi-weekly']:   #bi-weekly payment
+                payment = calcPaymentValue(dictionary, unionDic, key)
+                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
+                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(deposit)
+                    print("Pagamento bi-semanal efetuado")
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
+                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento bi-semanal efetuado")
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
+                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento bi-semanal efetuado")
+
+def monthlyPayment(dictionary, unionDic, schedule, day):
+    for key in schedule['monthly']:  #weekly payment
+                payment = calcPaymentValue(dictionary, unionDic, key)
+
+                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
+                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(deposit)
+                    print("Pagamento mensal efetuado")
+
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
+                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento mensal efetuado")
+
+                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
+                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
+                    dictionary[key]['worker'].PutInWallet(check)
+                    print("Pagamento mensal efetuado")
+
 def payEmployees(dictionary, unionDic, schedule, day):
     if len(dictionary) == 0:
         print("Não há funcionários para serem pagos")
     elif (day.weekday() > 4):
         print("É fim de semana, nenhum pagamento feito.")
     else:
-        #print("Vendo se é sexta")
         if (checkIfFriday(day) or checkLastWorkDay(day)):
-            for key in schedule['weekly']:  #weekly payment
-                payment = calcPaymentValue(dictionary, unionDic, key)
-                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
-                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(deposit)
-                    print("Pagamento semanal efetuado")
-
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
-                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento semanal efetuado")
-
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
-                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento semanal efetuado")
-
-            for key in schedule['bi-weekly']:   #bi-weekly payment
-                payment = calcPaymentValue(dictionary, unionDic, key)
-                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
-                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(deposit)
-                    print("Pagamento bi-semanal efetuado")
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
-                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento bi-semanal efetuado")
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
-                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento bi-semanal efetuado")
-        #print("vendo se é ultimo dia util")
-        #if(checkLastWorkDay(day)):
-            for key in schedule['monthly']:  #weekly payment
-                payment = calcPaymentValue(dictionary, unionDic, key)
-
-                if (dictionary[key]['worker'].paymentMethod == 'Deposito em conta'):
-                    deposit = AccountDeposit(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(deposit)
-                    print("Pagamento mensal efetuado")
-
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque em maos'):
-                    check = CashCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento mensal efetuado")
-
-                elif (dictionary[key]['worker'].paymentMethod == 'Cheque pelos correios'):
-                    check = MailCheck(dictionary[key]['worker'].name, payment, day)
-                    dictionary[key]['worker'].PutInWallet(check)
-                    print("Pagamento mensal efetuado")
+            weeklyPayment(dictionary, unionDic, schedule, day)
+            biweeklyPayment(dictionary, unionDic, schedule, day)
+            monthlyPayment(dictionary, unionDic, schedule, day)
         else:
             print("Nenhum pagamento agendado hoje.")
 
