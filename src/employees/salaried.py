@@ -3,9 +3,13 @@ from employees.salesReport import SalesReport
 from payment.accountdeposit import AccountDeposit
 from payment.mailcheck import MailCheck
 from payment.cashcheck import CashCheck
+from changeDataStrategy import SimpleChange, DifferentChange
 import datetime
 
 class Salaried(Employee):
+
+    #Strategy = SimpleChange()
+
     def __init__(self, name, address, salary):
         super().__init__(name, address)
         self.kind = "Assalariado"
@@ -14,10 +18,13 @@ class Salaried(Employee):
         self.wallet = []
         self.netIncome = float(0)
 
-    def EditSalaried(self, name, address, salary):
+    def Edit(self, name, address, salary):
         self.name = name
         self.address = address
         self._salary = float(salary)
+
+    def EditData(self, dictionary, key):
+        SimpleChange.changePersonalData(self, dictionary, key)
     
     def setPaymentMethod(self, method):
         self.paymentMethod = method
@@ -55,18 +62,15 @@ class Comissioned(Salaried):
         self.wallet = []
         self.lastIndexPayed = 0
         self.netIncome = float(0)
-    #     self.date = None
-    #     self.value = None
 
-    # def SalesReport(self, date, value):
-    #     self.date = date
-    #     self.value = value
-
-    def EditComissioned(self, name, address, salary, bonus):
+    def Edit(self, name, address, salary, bonus):
         self.name = name
         self.address = address
         self.salary = salary
         self.bonus = bonus
+
+    def EditData(self, dictionary, key):
+        DifferentChange.changePersonalData(self, dictionary, key)
 
     def SetLastIndex(self, index):
         self.lastIndexPayed = index

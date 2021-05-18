@@ -1,10 +1,10 @@
 from employees.employee import Employee
-from payment.accountdeposit import AccountDeposit
-from payment.mailcheck import MailCheck
-from payment.cashcheck import CashCheck
-import datetime
+from changeDataStrategy import SimpleChange
 
 class Hourly(Employee):
+
+    #Strategy = SimpleChange()
+
     def __init__(self, name, address, salary):
         super().__init__(name, address)
         self.kind = "Horista"
@@ -27,10 +27,13 @@ class Hourly(Employee):
             self.workedHours += 8
             self.workedExtraHours += (hours - 8)
     
-    def EditHourly(self, name, address, salary):
+    def Edit(self, name, address, salary):
         self.name = name
         self.address = address
         self._salary = float(salary)
+
+    def EditData(self, dictionary, key):
+        SimpleChange.changePersonalData(self, dictionary, key)
 
     def GetIncome(self):
         self.income = (self.workedHours*self._salary) + (1.5*(self._salary)*(self.workedExtraHours))
@@ -59,30 +62,6 @@ class Hourly(Employee):
         else:
             print("Nenhum pagamento recebido")
 
-    # def CheckIfPayed(self, todaysdate):
-    #     if not self.paymentRecord:  #check if paymentRecord[] is empty
-    #         print("{} ainda não foi pago".format(self.name))
-    #         return False 
-    #     else:
-    #         if (self.paymentRecord[-1].month == todaysdate.month):
-    #             print("{} já foi pago".format(self.name))
-    #             return True
-    #         else:
-    #             print("{} ainda não foi pago".format(self.name))
-    #             return False
-    
-    # def PaymentVoucher(self, payday):
-    #     self.paymentRecord.append(payday)
-
-    # def PrintLastPaymentVoucher(self):
-    #     if not self.paymentRecord:
-    #         print("{} ainda não foi pago".format(self.name))
-    #     else:
-    #         print(self.paymentRecord[-1])
-
 
     def __str__(self):
         return super().__str__() + 'Tipo de empregado: {}\nHoras trabalhadas: {}\nHoras extras trabalhadas: {}'.format(self.kind, self.workedHours, self.workedExtraHours)
-
-# k1 = Hourly("Rafa", "Matao", 500, 1.04)
-# print(k1)

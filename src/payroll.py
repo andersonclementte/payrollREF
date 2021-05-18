@@ -288,24 +288,27 @@ def editEmployeeOptions():
     return ans
 
 def changePersonalData(dictionary, key):
-    newName = input("Digite o novo nome: ")
-    newAddress = input("Digite o novo endereço: ")
-    newSalary = float(input("Digite o novo salário: "))
-    if (dictionary[key]['worker'].kind == 'Horista'):
-        dictionary[key]['worker'].EditHourly(newName, newAddress, newSalary)
-        print("Funcionário editado com sucesso.")
-        print("--------------------------------")
+    # newName = input("Digite o novo nome: ")
+    # newAddress = input("Digite o novo endereço: ")
+    # newSalary = float(input("Digite o novo salário: "))
+    # if (dictionary[key]['worker'].kind == 'Horista'):
+    #     dictionary[key]['worker'].EditHourly(newName, newAddress, newSalary)
+    #     print("Funcionário editado com sucesso.")
+    #     print("--------------------------------")
 
-    elif (dictionary[key]['worker'].kind == 'Assalariado'):
-        dictionary[key]['worker'].EditSalaried(newName, newAddress, newSalary)
-        print("Funcionário editado com sucesso.")
-        print("--------------------------------")
+    # elif (dictionary[key]['worker'].kind == 'Assalariado'):
+    #     dictionary[key]['worker'].EditSalaried(newName, newAddress, newSalary)
+    #     print("Funcionário editado com sucesso.")
+    #     print("--------------------------------")
 
-    elif (dictionary[key]['worker'].kind == 'Comissionado'):
-        newBonus = float(input("Digite o novo bonus: "))
-        dictionary[key]['worker'].EditComissioned(newAddress, newAddress, newSalary, newBonus)
-        print("Funcionário editado com sucesso.")
-        print("--------------------------------")
+    # elif (dictionary[key]['worker'].kind == 'Comissionado'):
+    #     newBonus = float(input("Digite o novo bonus: "))
+    #     dictionary[key]['worker'].EditComissioned(newAddress, newAddress, newSalary, newBonus)
+    #     print("Funcionário editado com sucesso.")
+    #     print("--------------------------------")
+    dictionary[key]['worker'].EditData(dictionary, key)
+    print("Funcionário editado com sucesso.")
+    print("--------------------------------")
 
 def changeToHourly(dictionary, key):
     name = dictionary[key]['worker'].name
