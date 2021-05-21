@@ -14,8 +14,6 @@ class Hourly(Employee):
         self.paymentMethod = None
         self.wallet = []
         self.netIncome = float(0)
-        # self.defaultPayDay = True
-        # self.paymentRecord = []
 
     def setPaymentMethod(self, method):
         self.paymentMethod = method
