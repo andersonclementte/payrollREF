@@ -1,5 +1,4 @@
 import datetime as dt
-from employees.employee import Employee
 from employees.hourly import Hourly
 from employees.salaried import Salaried, Comissioned
 from employees.salesReport import SalesReport
@@ -8,6 +7,8 @@ from payment.accountdeposit import AccountDeposit
 from payment.mailcheck import MailCheck
 from payment.cashcheck import CashCheck
 from os import system
+
+from insertEmployeeTemplate import InsertHourly, InsertSalaried, InsertComissioned
 
 #global variables and stuff
 clear = lambda: system('clear')
@@ -56,50 +57,50 @@ def employeeChoose():
     ans = int(input())
     return ans
 
-def insertHourly():
-    #e2 = Hourly('ze', "friburgo", 500, 1.04)
-    clear()
-    print("Registro de funcionário Horista:")
-    name = input("Digite o nome: ")
-    address = input("Digite o endereço: ")
-    salary = float(input("Digite o salario: "))
-    employee = Hourly(name, address, salary)
-    clear()
+# def insertHourly():
+#     #e2 = Hourly('ze', "friburgo", 500, 1.04)
+#     clear()
+#     print("Registro de funcionário Horista:")
+#     name = input("Digite o nome: ")
+#     address = input("Digite o endereço: ")
+#     salary = float(input("Digite o salario: "))
+#     employee = Hourly(name, address, salary)
+#     clear()
 
-    return employee
+#     return employee
 
-def insertSalaried():
-    #e3 = Salaried('figo', "porto", 5000)
-    clear()
-    print("Registro de funcionário assalariado:")
-    name = input("Digite o nome: ")
-    address = input("Digite o endereço: ")
-    salary = float(input("Digite o salario: "))
-    employee = Salaried(name, address, salary)
-    clear()
+# def insertSalaried():
+#     #e3 = Salaried('figo', "porto", 5000)
+#     clear()
+#     print("Registro de funcionário assalariado:")
+#     name = input("Digite o nome: ")
+#     address = input("Digite o endereço: ")
+#     salary = float(input("Digite o salario: "))
+#     employee = Salaried(name, address, salary)
+#     clear()
 
-    return employee
+#     return employee
 
-def insertComissioned():
-    # e4 = Comissioned("tiao", "mcz", 2000, 140)
-    clear()
-    print("Regitro de funcionário comissionado:")
-    name = input("Digite o nome: ")
-    address = input("Digite o endereço: ")
-    salary = float(input("Digite o salario: "))
-    bonus = float(input("Digite o bônus percentual (%): "))
-    employee = Comissioned(name, address, salary, bonus)
-    clear()
-    return employee
+# def insertComissioned():
+#     # e4 = Comissioned("tiao", "mcz", 2000, 140)
+#     clear()
+#     print("Regitro de funcionário comissionado:")
+#     name = input("Digite o nome: ")
+#     address = input("Digite o endereço: ")
+#     salary = float(input("Digite o salario: "))
+#     bonus = float(input("Digite o bônus percentual (%): "))
+#     employee = Comissioned(name, address, salary, bonus)
+#     clear()
+#     return employee
 
 def addEmployee(option):
 
     if option == 1:
-       employee = insertHourly()
+       employee = InsertHourly().add()
     elif option == 2:
-        employee = insertSalaried()
+        employee = InsertSalaried().add()
     elif option == 3:
-        employee = insertComissioned()
+        employee = InsertComissioned().add()
     
     return employee
 #add employee end block

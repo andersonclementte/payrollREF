@@ -1,14 +1,8 @@
 from employees.employee import Employee
-from employees.salesReport import SalesReport
-from payment.accountdeposit import AccountDeposit
-from payment.mailcheck import MailCheck
-from payment.cashcheck import CashCheck
 from changeDataStrategy import SimpleChange, DifferentChange
-import datetime
 
 class Salaried(Employee):
 
-    #Strategy = SimpleChange()
 
     def __init__(self, name, address, salary):
         super().__init__(name, address)
