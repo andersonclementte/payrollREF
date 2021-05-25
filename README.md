@@ -35,5 +35,8 @@
 
 # Refatoramento
 1. O método payEmployee() do modulo payroll possuia o smell Long Method que foi resolvido dividindo-o em passos através de outros três métodos com base no design *move accumulation to collecting parameter*, foram criados os metodos weeklyPayment(), biweeklyPayment() e monthlyPayment() que passaram a ser invocados em payEmployee().
+Veja alterações clicando [aqui](https://github.com/andersonclementte/payrollREF/commit/95e94f74ce9009347d1731e8f161b47817e9673d "aqui")
 2. O padrão *Strategy* foi aplicado no método changePersonalData() de modo a evitar ifs desnecesários que checavam o tipo de funcionário. Foi criada uma interface e duas estratégias,  SimpleChange e DifferentChange, sendo a classe DifferentChange() aplicável aos funcionários comissionados, pois possuem mais atributos que precisam ser alterados.
+Veja alterações clicando [aqui](https://github.com/andersonclementte/payrollREF/commit/22f795d0703d2ed11505f46f3477b8c8efcadca8 "aqui")
 3. O padrão *Template* foi implementado para substituir os três métodos de inserção de cada tipo de funcionário. A classe abstrata InsertEmployee() contem a implementação comum a todas as subclasses, e as subclasses implementam conforme suas necessidades no método instantiate(). As subclasses são instanciadas no método addEmployee() no modulo payroll.py
+Veja alterações clicando [aqui](https://github.com/andersonclementte/payrollREF/commit/57e0e84e02463f522586c99304050a4635a5673c "aqui")
